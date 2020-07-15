@@ -18,7 +18,9 @@ public abstract class AfterDecorator<T, R> implements Decorator<T, R> {
         ).apply("input");
 
         // Even better:
-        decorator.from(UseCase.from(existingMethod())).apply("X");
+        decorator.from(
+                UseCase.of(existingMethod())
+        ).apply("X");
     }
 
     private static BiConsumer<String, Object> afterCallback() {
