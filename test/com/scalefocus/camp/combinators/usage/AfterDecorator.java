@@ -17,10 +17,15 @@ public abstract class AfterDecorator<T, R> implements Decorator<T, R> {
                 existingMethod()
         ).apply("input");
 
+        //////
+
         // Even better:
-        decorator.from(
+        System.out.println(
+                Decorator.after(
+                        afterCallback()
+                ).from(
                 UseCase.of(existingMethod())
-        ).apply("X");
+                ).apply("X"));
     }
 
     private static BiConsumer<String, Object> afterCallback() {
@@ -28,6 +33,7 @@ public abstract class AfterDecorator<T, R> implements Decorator<T, R> {
     }
 
     private static Function<String, Object> existingMethod() {
+        System.out.println("invoking existing method");
         return Function.identity().compose(String::length);
     }
 
